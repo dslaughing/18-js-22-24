@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+		<script>
+		var arr1 = [43, 54, 4, -4, 84, 100, 58, 27, 140];
+		var arr2 = [43, 54, 4, -4, 84, 100, 58, 27, 140];
+		var low=arr1.sort(function(a,b){return b-a;});
+		var up=arr2.sort(function(a,b){return a-b;});
+//		console.log(low);
+//		console.log(up);
+		
+		var arrE1= ['apple', 'dog', 'cat', 'car', 'zoo', 'orange', 'airplane'];
+		var arrE2= ['apple', 'dog', 'cat', 'car', 'zoo', 'orange', 'airplane'];
+		var aToz=arrE1.sort();
+		var zToa=arrE2.sort().reverse();
+//		console.log(aToz);
+//		console.log(zToa);
+
+		var arr2D = [[10, 14], [16, 60], [7, 44], [26, 35], [22, 63]];
+		var arr2s=arr2D.sort(function(a,b){return b[1]-a[1];})
+//		console.log(arr2s);
+
+		var arrObj = [
+    {
+        id: 1,
+        name: 'candy',
+        value: 40
+    }, {
+        id: 2,
+        name: 'Simon',
+        value: 50
+    }, {
+        id: 3,
+        name: 'Tony',
+        value: 45
+    }, {
+        id: 4,
+        name: 'Annie',
+        value: 60
+    }
+];
+		var arrObjs=arrObj.sort(function(a,b){a.value-b.value});
+//		console.log(arrObjs);
+			
+
+		
+		</script>
+
+	</body>
+</html>

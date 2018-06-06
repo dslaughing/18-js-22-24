@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+		<div>
+    <label>Number A:<input id="radio-a" type="radio" name="math-obj" value="a"></label><input id="num-a" type="text">
+    <label>Number B:<input id="radio-b" type="radio" name="math-obj" value="b"></label><input id="num-b" type="text">
+		</div>
+		
+		<div class="btns">
+    <button id="judge">判断当前选中的输入框输入内容是否为数字</button>
+    <button id="AB">把 A 四舍五入为 B 个小数位数的数字</button>
+    <button id="abs">当前选中数字的绝对值</button>
+    <button id="ceil">对当前选中的数字进行上舍入</button>
+    <button id="floor">对当前选中的数字进行下舍入</button>
+    <button id="round">把当前选中的数字四舍五入为最接近的整数</button>
+    <button id="maximum">返回 A 和 B 中的最高值</button>
+    <button id="minimum">返回 A 和 B 中的最低值</button>        
+		</div>
+		
+	<p id="result"></p>
+
+		<script>
+		(function (){
+			$=function(id){return document.querySelector(id)};
+			var currentNum="";
+
+			
+			function searchChecked(){
+				var radios=document.getElementsByName("math-obj");
+				var i,len=radios.length;
+				for(i=0;i<len;i++){
+					if(radios[i].checked == true){
+						currentNum=radios[i].parentNode.nextElementSibling.value;
+						break;
+					}
+				}
+				if(currentNum == "") throw new Error("请选择并输入Number");
+			}
+			
+			
+			
+			$(".btns").onclick=function(e){
+				try{
+					if(e.target.className=="btns") throw new Error("请点击btns")
+					
+					var numA=$("#num-a").value;
+					var numB=$("#num-b").value;
+					searchChecked();
+					
+					switch(e.target.id){
+						
+						case "judge":
+						console.log(currentNum);
+						if(/^\-?[0-9]+\.?[0-9]*$/.test(currentNum)){
+							$("#result").innerHTML="是数字，没错= ="
+						}else{
+							$("#result").innerHTML="不是数字"
+						}
+						break;
+						
+						if(!/^\-?\d+\.?[0-9]*$/.test(currentNum)) throw new Error("请输入数字")
+						
+						case "AB":
+						if((/^\-?0$|^[1-9][0-9]*$/.test(numA)) && (/^\-?0$|^[1-9][0-9]*$/.test(numB))){
+							$("#result").innerHTML=Math.round(numA).toFixed(numB);
+						}else{
+							$("#result").innerHTML="两边都要有零或正整数才能运算"
+						}
+						break;
+						
+						case "abs":
+						$("#result").innerHTML=Math.abs(currentNum);
+						break;
+						
+						case "ceil":
+						$("#result").innerHTML=Math.ceil(currentNum);
+						break;
+						
+						case "round":
+						$("#result").innerHTML=Math.round(currentNum);
+						break;
+						
+						case "floor":
+						$("#result").innerHTML=Math.floor(currentNum);
+						break;						
+						
+						case "maximum":
+						if((/^\-?[0-9]+\.?[0-9]*$/.test(numA)) && (/^\-?[0-9]+\.?[0-9]*$/.test(numB))){
+							$("#result").innerHTML=Math.max(numA,numB);
+						}else{
+							$("#result").innerHTML="两边都要有数字才能运算";
+						}
+						break;
+						
+						case "minimum":
+						if((/^\-?[0-9]+\.?[0-9]*$/.test(numA)) && (/^\-?[0-9]+\.?[0-9]*$/.test(numB))){
+							$("#result").innerHTML=Math.min(numA,numB);
+						}else{
+							$("#result").innerHTML="两边都要有数字才能运算";
+						}
+						break;
+					}
+				}
+
+				catch(e){
+					if(e.message!=="请点击btns"){
+						alert(e.message);
+					}
+				}
+			}
+
+
+			
+		})();
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+<input id="stack-input" type="text">
+<p id="stack-cont">栈内容：apple-&lt;pear</p>    
+<button id="unshift-btn">进栈</button>
+<button id="shift-btn">退栈</button>
+<button id="font-btn">打印栈顶元素内容</button>
+<button id="empty-btn">判断栈是否为空</button>
+<p id="print"></p>
+
+<script>
+$=function(id){return document.querySelector(id)};
+
+var stack = ["apple", "pear"];
+
+function deal(){
+	try{
+	var cont=$("#stack-input").value;
+	switch(this.id){
+		case "unshift-btn":
+		if(cont!=""){stack.unshift(cont);}
+		break;
+		
+		case "shift-btn":
+		if(stack.length>0){
+			stack.shift();			
+		}
+		break;
+		
+		case "font-btn":
+		var p=(stack.length>0)?stack[0]:"没有元素打印了";
+		$("#print").textContent=p;
+		break;
+		
+		case "empty-btn":
+		var p=(stack.length)<=0?true:false;
+		window.alert(p);
+		break;
+		
+	}
+	$("#stack-cont").textContent="队列内容 : "+stack.join("-<");		
+	}
+	catch(e){
+		alert(e.message);
+	}
+}
+
+$("#unshift-btn").onclick=deal;
+$("#shift-btn").onclick=deal;
+$("#font-btn").onclick=deal;
+$("#empty-btn").onclick=deal;
+
+</script>
+
+
+	</body>
+</html>
